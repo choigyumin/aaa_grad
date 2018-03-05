@@ -1,7 +1,7 @@
 var express = require('express');
 
 var app = express();
-
+var friend = require('./lib/friend.js');
 app.use(express.static(__dirname + '/public'));
 
 
@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 
 //About page
 app.get('/about', function(req, res){
-	res.render('about');
+	res.render('about', { friend: friend.getFriend() });
 });
 
 
@@ -42,6 +42,7 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log( 'Express started on http://localhost:' +
     app.get('port') + '; press Ctrl-C to terminate.' );
+  console.log( 'SSH connect on 123.142.172.150:2043');
 });
 
 
