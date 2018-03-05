@@ -1,0 +1,10 @@
+<!doctype html>
+<html>
+<head>
+	<title>AAA Homepage</title>
+</head>
+<body>
+	<header><img src="/img/logo_tmp.png" alt="AAA logo temp"></header>
+	{{{body}}}
+</body>
+</html>
