@@ -14,6 +14,14 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
+//Test Functions On and Off
+app.use(function(req, res, next) {
+	res.locals.showTests = app.get('env') !== 'production' &&
+		req.query.test === '1';
+	next();
+});
+
+
 //home page
 app.get('/', function(req, res){
 	res.render('home');
@@ -21,10 +29,23 @@ app.get('/', function(req, res){
 
 //About page
 app.get('/about', function(req, res){
-	res.render('about', { friend: friend.getFriend() });
+	res.render('about', { 
+		friend: friend.getFriend(), 
+		pageTestScript: '/qa/tests-about.js'
+	});
 });
 
+//cross check
+app.get('/menus/gongji', function(req, res){
+	res.render('menus/gongji');
+});
+app.get('/menus/chun-kee', function(req, res){
+	res.render('menus/chun-kee');
+});
 
+app.get('/menus/request-group-rate', function(req, res){
+	res.render('menus/request-group-rate');
+});
 
 //custom 404
 app.use(function(req, res){
